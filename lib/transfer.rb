@@ -18,7 +18,8 @@ class Transfer
       @receiver.deposit(@amount)
       @status = 'complete'
     else 
-      @status = 'rejected'
+      case
+    
     end
   end
 end
