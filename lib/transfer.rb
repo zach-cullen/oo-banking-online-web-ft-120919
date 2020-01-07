@@ -13,16 +13,17 @@ class Transfer
   end
   
   def execute_transaction
-    error_msg = 'Transaction'
+    error_msg = 'Transaction rejected.Please check your account balance.'
     if valid? && @sender.balance >= @amount && @status == 'pending'
       @sender.balance -= @amount
       @receiver.deposit(@amount)
       @status = 'complete'
     elsif !valid?
       @status = 'rejected'
-      'Transaction rejected. Please check your account balance.'
+      error_msg
     elsif @sender.balance < @amount
-      @status = 'Insufficient funds'
+      @status = 'rejected'
+      error_msg
     elsif @status != 'pending'
       @status = 'only one transfer'
     end
