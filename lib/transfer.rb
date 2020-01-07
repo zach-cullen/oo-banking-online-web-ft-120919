@@ -14,10 +14,12 @@ class Transfer
   
   def execute_transaction
     if @status == 'pending' && @sender.balance > @amount
-      @sender.balance -= amount
-      #change status to complete
+      @sender.balance -= @amount
+      @receiver.deposit(@amount)
+      @status = 'complete'
     else 
-      #reject transfer 
+      @status = 'rejected'
+      'Insufficient funds'
     end
   end
 end
