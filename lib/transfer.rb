@@ -18,14 +18,9 @@ class Transfer
       @sender.balance -= @amount
       @receiver.deposit(@amount)
       @status = 'complete'
-    elsif !valid?
+    else
       @status = 'rejected'
       error_msg
-    elsif @sender.balance < @amount
-      @status = 'rejected'
-      error_msg
-    elsif @status != 'pending'
-      @status = 'only one transfer'
     end
   end
 end
