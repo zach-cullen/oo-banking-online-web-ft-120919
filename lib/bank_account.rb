@@ -5,7 +5,7 @@ class BankAccount
   def initialize(name)
     @name = name
     @balance = 1000
-    @status = "open"
+    @status = 'open'
   end
   
   def deposit(amount)
@@ -17,7 +17,7 @@ class BankAccount
   end
   
   def valid?
-    @status == "open" && @balance > 0 ? true : false
+    @status == 'open' && @balance > 0 ? true : false
   end
   
   def close_account 
